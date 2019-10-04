@@ -1,12 +1,102 @@
-<<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Capitales</title>
-  </head>
-  <body>
+<head>
+  <meta charset="utf-8">
+  <title>Capitales</title>
+</head>
+<body>
+  <div id="formulario">
     <h2>¿Cuales son las capitales de estos paises?</h2>
-    <h3>Turquia</h3>
+    <form id="formu" method="POST" action="#">
+      <label>Turquia </label><input id="capital1" name="capital1" type="text"><br>
+      <label>Burkina Faso </label>
+      <select size="1" name="capital2" id="capital2">
+        <option value=""></option>
+        <option value="uagadugu">Uagadugu</option>
+        <option value="ugaduagu">Ugaduagu</option>
+        <option value="uagugaudu">Uagugadu</option>
+      </select><br>
+      <label>Kyrgyzstan </label>
+      <input type="radio" value="gistelk" name="capital3"><label>Gistelk</label>
+      <input type="radio" value="bishtek" name="capital3"><label>Bishtek</label>
+      <input type="radio" value="bishkek" name="capital3"><label>Bishkek</label><br>
+      <input type="button" value="Ver seleccion" onClick="calificar()">
+    </form>
+    <hr>
+  </div>
 
-  </body>
+  <div id="excelente" style="display:none">
+    <h1>Gran Trabajo</h1>
+    <img src="img/excelente.gif">
+    <br>
+    <input type="button" name="" value="atras" onclick="recargar()">
+  </div>
+  <div id="bien" style="display:none">
+    <h1>Eso esta bien</h1>
+    <img src="img/bien.gif">
+    <br>
+    <input type="button" name="" value="atras" onclick="recargar()">
+  </div>
+  <div id="mal" style="display:none">
+    <h1>Realmente necesitas hacerlo mejor</h1>
+    <img src="img/mal.gif">
+    <br>
+    <input type="button" name="" value="atras" onclick="recargar()">
+  </div>
+</body>
+
+<script type="text/javascript">
+var vpregunta1 = document.getElementById("capital1");
+var vpregunta2 = document.getElementById("capital2");
+var vpregunta3 = document.querySelectorAll("input[name='capital3']");
+var aciertos = 0;
+
+function calificar() {
+  //comprobacion pregunta 1
+  if (vpregunta1.value == "Ankara") {
+    aciertos +=1;
+  }
+
+  //comprobacion pregunta 3
+  vcapital2 = vpregunta2.options[vpregunta2.selectedIndex].innerHTML;
+  if (vcapital2 == "Uagadugu") {
+    aciertos +=1;
+  }
+
+  //comprobacion pregunta 3
+  for (let i=0; i<vpregunta3.length; i++) {
+
+    //identificar la respuesta seleccionada
+    if (vpregunta3[i].checked == true) {
+      //comprobar si la respuesta seleccionada es correcta
+      if (vpregunta3[i].value == "bishkek") {
+        aciertos +=1;
+      }
+    }
+  }
+
+  switch (aciertos) {
+    case 0:
+    document.getElementById("mal").style.display="block";
+    document.getElementById("formulario").style.display="none";
+    break;
+    case 1:
+    case 2:
+    document.getElementById("bien").style.display="block";
+    document.getElementById("formulario").style.display="none";
+
+    break;
+    case 3:
+    document.getElementById("excelente").style.display="block";
+    document.getElementById("formulario").style.display="none";
+
+    break;
+    default:
+  }
+  console.log(aciertos);
+}
+function recargar() {
+  location.reload();
+}
+</script>
 </html>

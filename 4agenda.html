@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ver Seleccion</title>
+  <meta charset="utf-8">
+</head>
+<body>
+  <form id="formu" method="POST" action="#">
+    <h2>Agenda</h2>
+    <label>Nombre: </label><input id="nombre" name="nombre" type="text"><br><br>
+    <label>Telefono: </label>
+    <select size="1" name="telefono" id="telefono">
+      <option value=""></option>
+      <option value="casa">Casa</option>
+      <option value="movil">Movil</option>
+      <option value="trabajo">Trabajo</option>
+    </select>
+    <input id="numero" name="numero" type="number"><br><br>
+    <input type="button" value="Guardar" onClick="guardar()">
+  </form>
+  <hr>
+  <p id="informacion"></p>
+
+  <script>
+  var vtexto = document.getElementById("informacion");
+  var vnombre = document.getElementById("nombre");
+  var vtelefono = document.getElementById("telefono");
+  var vnumero = document.getElementById("numero");
+  let valido = false;
+
+  function guardar() {
+    if (vnumero.toString().length == 8) {
+      if (vtelefono.value == "casa") {
+        //comprobar si el numero de casa empieza por 9
+        if (vnumero.value.charAt(0) != 9) {
+          alert("Los numeros de casa empiezan por 9!");
+        } else {
+          valido = true;
+        }
+      } else if (vtelefono.value == "movil") {
+        //comprobar si el numero de movil empieza por 6
+        if (vnumero.value.charAt(0) != 6) {
+          alert("Los numeros de movil empiezan por 6!");
+        } else {
+          valido = true;
+        }
+      } else if (vtelefono.value == "trabajo") {
+        //los numeros de trabajo pueden ser moviles o fijos
+        if (vnumero.value.charAt(0) != 9 && vnumero.value.charAt(0) != 6) {
+          alert("Los numeros de movil empiezan por 6 o por 9!");
+        } else if (vnumero.value.charAt(0) == 9 || vnumero.value.charAt(0) == 6) {
+          valido = true;
+        }
+      }
+
+      if (valido) {
+        //mostrar seleccion en texto
+        vtexto.innerHTML += "El numero de " + vtelefono.value + " de " + vnombre.value + " es: " + vnumero.value + "<hr>";
+      }
+    } else {
+      alert("El numero debe tener 8 digitos");
+    }
+  }
+  </script>
+</body>
+</html>

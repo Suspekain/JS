@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ver Seleccion</title>
+  <meta charset="utf-8">
+</head>
+<body>
+  <form id="formu" method="POST" action="#">
+    <h2>Recogida y procesamiento de de datos de un formulario</h2>
+    <label>Nombre del cliente: </label><input id="nombre" name="nombre" type="text"><br><br>
+    <label>Material de la caja: </label>
+    <select size="1" name="material" id="material">
+      <option value="madera">Madera</option>
+      <option value="hierro">Hierro</option>
+      <option value="plastico">Plast</option>
+    </select><br>
+
+    <p>Selecciona una dimension para la caja:</p>
+    <input type="radio" value="diminuta" name="dimension"><label>Diminuta</label>
+    <input type="radio" value="mediana" name="dimension"><label>Mediana</label>
+    <input type="radio" value="Grande" name="dimension"><label>Grande</label><br>
+    <br/>
+    <input type="button" value="Ver seleccion" onClick="verseleccion()">
+  </form>
+  <hr>
+  <p id="informacion"></p>
+
+  <script>
+  var vtexto = document.getElementById("informacion");
+  var vnombre = document.getElementById("nombre");
+  //valor de la lista
+  var vmaterial = document.getElementById("material");
+  //radio seleccionado
+  var vradio = document.querySelectorAll("input[type='radio']");
+  var vdimension;
+
+  function verseleccion() {
+    //valor de material
+    vmaterial = vmaterial.options[vmaterial.selectedIndex].innerHTML;
+    //valor del radio seleccionado
+    for(i=0; i<vradio.length; i++){
+      if(vradio[i].checked == true)
+      vdimension = vradio[i].value;
+    }
+    //mostrar seleccion en texto
+    vtexto.innerHTML = "Nombre: " + vnombre.value + "<br>Material: " + vmaterial + "<br>Dimension: " + vdimension;
+  }
+  </script>
+</body>
+</html>

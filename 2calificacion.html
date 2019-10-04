@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title>Calificacion</title>
+</head>
+<body>
+  <h3>¿Cual es la mejor descripcion de una variable?</h3>
+  <input type="radio" value="a" name="pregunta1"><label>Un metodo para unir cadenas.</label><br>
+  <input type="radio" value="b" name="pregunta1"><label>Le permite almacenar informacion para que pueda ser reutilizada en todo el programa.</label><br>
+  <input type="radio" value="c" name="pregunta1"><label>Le permite tomar una decision basada en una condicion.</label><br>
+  <br/>
+  <h3>¿Cual es la mejor descripcion de la concatenacion?</h3>
+  <input type="radio" value="a" name="pregunta2"><label>Un metodo para unir cadenas.</label><br>
+  <input type="radio" value="b" name="pregunta2"><label>Le permite almacenar informacion para que pueda ser reutilizada en todo el programa.</label><br>
+  <input type="radio" value="c" name="pregunta2"><label>Le permite tomar una decision basada en una condicion.</label><br>
+  <br/>
+  <h3>¿Cual es la mejor descripcion de la instruccion if?</h3>
+  <input type="radio" value="a" name="pregunta3"><label>Un metodo para unir cadenas.</label><br>
+  <input type="radio" value="b" name="pregunta3"><label>Le permite almacenar informacion para que pueda ser reutilizada en todo el programa.</label><br>
+  <input type="radio" value="c" name="pregunta3"><label>Le permite tomar una decision basada en una condicion.</label><br>
+  <br/>
+  <input type="button" value="Calificacion" onClick="calificar()">
+  <p id="calificacion">Tu calificacion es: _/3</p>
+</body>
+
+<script>
+  var vcalificacion = document.getElementById("calificacion");
+  //recoger respuestas
+  var vpregunta1 = document.querySelectorAll("input[name='pregunta1']");
+  var vpregunta2 = document.querySelectorAll("input[name='pregunta2']");
+  var vpregunta3 = document.querySelectorAll("input[name='pregunta3']");
+  var aciertos = 0;
+
+  function calificar() {
+    //recorrer las tres respuestas
+    for (let i=0; i<vpregunta1.length; i++) {
+      //identificar la respuesta seleccionada
+      if (vpregunta1[i].checked == true) {
+        //comprobar la la respuesta seleccionada es correcta
+        if (vpregunta1[i].value == "b") {
+          aciertos +=1;
+        }
+      }
+    }
+    for (let i=0; i<vpregunta2.length; i++) {
+      if (vpregunta2[i].checked == true) {
+        if (vpregunta2[i].value == "a") {
+          aciertos +=1;
+        }
+      }
+    }
+    for (let i=0; i<vpregunta3.length; i++) {
+      if (vpregunta3[i].checked == true) {
+        if (vpregunta3[i].value == "c") {
+          aciertos +=1;
+        }
+      }
+    }
+    if (aciertos > 3) {
+      alert("Solo puedes responder una vez");
+    }
+    vcalificacion.innerHTML = "Tu calificacion es: " + aciertos + "/3";
+  }
+</script>
+</html>
